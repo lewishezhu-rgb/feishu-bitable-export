@@ -1,0 +1,4 @@
+{
+  "description": "Use an invalid or incomplete Feishu Bitable URL.",
+  "expected": "The command exits non-zero and publishes no XLSX file."
+}

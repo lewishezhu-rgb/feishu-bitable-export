@@ -1,0 +1,176 @@
+{
+  "artifacts": [
+    {
+      "id": "claude_plugin_marketplace_json",
+      "path": ".claude-plugin/marketplace.json",
+      "sha256": "aa0b0bcddc1774ab5bf0e9b5128fc51cc1a6d551d3cf93155deab69e73284f41",
+      "type": "package_file"
+    },
+    {
+      "id": "claude_plugin_plugin_json",
+      "path": ".claude-plugin/plugin.json",
+      "sha256": "9f625854d661efc5d3a9094179a0e2925e616fe7668eaa8bc572448738fa2cbb",
+      "type": "package_file"
+    },
+    {
+      "id": "gitignore",
+      "path": ".gitignore",
+      "sha256": "0a9f38a206d166e917138d7c45684413bedaebe47eca50c4773ed574ef3eaf2f",
+      "type": "package_file"
+    },
+    {
+      "id": "agents_document",
+      "path": "AGENTS.md",
+      "sha256": "84ff5db55220fe2d761b81b201070582097b516c469f32ef47660c79275b1ebb",
+      "type": "companion_instruction"
+    },
+    {
+      "id": "license",
+      "path": "LICENSE",
+      "sha256": "28b03163e854fc08e87292fb514d963b4f59b4f105a3aad286344e7128b6dc44",
+      "type": "package_file"
+    },
+    {
+      "id": "readme_md",
+      "path": "README.md",
+      "sha256": "2cab97c402005109907e1d8f90ec5557889f6af327b6a308c19a713ec12d1ac8",
+      "type": "package_file"
+    },
+    {
+      "id": "skill_document",
+      "path": "SKILL.md",
+      "sha256": "dad85d406ad406b416f47a3c268eefca755cfd858297e6be6678a495713627ac",
+      "type": "instruction"
+    },
+    {
+      "id": "verification_md",
+      "path": "VERIFICATION.md",
+      "sha256": "8da9e364fe49ba49bd25f44e6f469e35618a22689aa1a659f38be179ae776f4b",
+      "type": "package_file"
+    },
+    {
+      "id": "discovery_json",
+      "path": "discovery.json",
+      "sha256": "39225649c373454739eda85145d8f706fb9deceb9ac98d4346fd76cedf5f75a2",
+      "type": "package_file"
+    },
+    {
+      "id": "evals_feishu_bitable_export_eval_md",
+      "path": "evals/feishu-bitable-export.eval.md",
+      "sha256": "82589fad85407ec36e4c982500ce78b4602c17191ac0f3d559f81ce740a25446",
+      "type": "eval_spec"
+    },
+    {
+      "id": "authorized_view_input",
+      "path": "evals/golden/authorized-view/input.json",
+      "sha256": "abe64ee981ee8d19ee7c21747da5e9baa32bea2572a6481acf674111d2d4ba6a",
+      "type": "golden_input"
+    },
+    {
+      "id": "invalid_url_input",
+      "path": "evals/golden/invalid-url/input.json",
+      "sha256": "531e872ebe2e637bd805c5da393caaff250445989fcd1fd7461da5cd3dff6720",
+      "type": "golden_input"
+    },
+    {
+      "id": "public_view_input",
+      "path": "evals/golden/public-view/input.json",
+      "sha256": "ef0b764f445e16c82ff377b314ddd5e1bf208e36050f58eeaea31e4d564208c8",
+      "type": "golden_input"
+    },
+    {
+      "id": "install_ps1",
+      "path": "install.ps1",
+      "sha256": "aa24cb669dda536eac1c513c98cabc4857afd80cfc91868f085d4384aa961a1d",
+      "type": "package_file"
+    },
+    {
+      "id": "install_sh",
+      "path": "install.sh",
+      "sha256": "dbb2a8e2f02477a772d23ecad533845a0b79aaf83e34f056fa3244250e3c4889",
+      "type": "package_file"
+    },
+    {
+      "id": "interview_json",
+      "path": "interview.json",
+      "sha256": "cad6ed2b5138eb261e1ac2db6565903783f14eeedf5f4a152b39351f72b82250",
+      "type": "package_file"
+    },
+    {
+      "id": "package_lock_json",
+      "path": "package-lock.json",
+      "sha256": "2248dbd19eaa082c04c19ce47ecaf9bae175e9337f8d7fc91a791f26302213f6",
+      "type": "package_file"
+    },
+    {
+      "id": "package_json",
+      "path": "package.json",
+      "sha256": "076bbcf322e06f9705e3492a74a1afee65931ab62f695e7a0d5f1ba820bbe92c",
+      "type": "package_file"
+    },
+    {
+      "id": "scripts_check_workbook_mjs",
+      "path": "scripts/check-workbook.mjs",
+      "sha256": "7d73a2f49b57370e7b297bb8aeca22d86fa4778ee14ebf243c9d698ef35b16fb",
+      "type": "script"
+    },
+    {
+      "id": "scripts_export_bitable_mjs",
+      "path": "scripts/export-bitable.mjs",
+      "sha256": "c575712896aaae2640c86160fb0d744c34a35f83305dd890250ba768989052a2",
+      "type": "script"
+    },
+    {
+      "id": "scripts_run_evals_py",
+      "path": "scripts/run_evals.py",
+      "sha256": "4585fbea4431b7879a96e3ebedd25c888fd5886d6319d6cdec1783125461b97f",
+      "type": "script"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "every_expected_is_reachable",
+      "severity": "error"
+    },
+    {
+      "id": "deterministic_multistep_has_orchestrator",
+      "severity": "error"
+    }
+  ],
+  "edges": [],
+  "gates": [
+    {
+      "id": "spec",
+      "inputs": [
+        "skill_document",
+        "package_index"
+      ]
+    },
+    {
+      "id": "security",
+      "inputs": [
+        "package"
+      ]
+    },
+    {
+      "id": "pipeline",
+      "inputs": [
+        "scripts",
+        "dependency_manifests"
+      ]
+    },
+    {
+      "id": "eval_schema",
+      "inputs": [
+        "eval_specs",
+        "golden_cases",
+        "eval_runner"
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "skill": "feishu-bitable-export",
+  "workflow": {
+    "kind": "independent"
+  }
+}
