@@ -1,4 +1,0 @@
-{
-  "description": "Supply a user-authorized, anonymously readable Feishu Bitable view URL at verification time. Do not store source URLs, identifiers, records, cookies, or responses in this package.",
-  "expected": "A valid XLSX after complete-record verification."
-}
