@@ -1,0 +1,4 @@
+{
+  "description": "Supply a view URL that requires manual sign-in. Verify the browser session is new and in-memory, login is user-mediated, and no credentials persist after close.",
+  "expected": "A valid XLSX only after the user completes sign-in in the temporary browser."
+}

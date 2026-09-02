@@ -1,0 +1,201 @@
+{
+  "authority_owner": {
+    "confirmed_by": "workspace-owner",
+    "evidence": [
+      "user request plus isolated public-link export verification on 2026-09-02"
+    ],
+    "proposed_by": null,
+    "status": "confirmed",
+    "updated_at": "2026-09-02T09:49:06Z",
+    "value": "workspace-owner"
+  },
+  "created_at": "2026-09-02T09:41:35Z",
+  "created_by": "workspace-owner",
+  "decision_consequence": {
+    "confirmed_by": "workspace-owner",
+    "evidence": [
+      "user request plus isolated public-link export verification on 2026-09-02"
+    ],
+    "proposed_by": null,
+    "status": "confirmed",
+    "updated_at": "2026-09-02T09:49:06Z",
+    "value": "The workbook supports offline review and must not silently omit records"
+  },
+  "decision_consumer": {
+    "confirmed_by": "workspace-owner",
+    "evidence": [
+      "user request plus isolated public-link export verification on 2026-09-02"
+    ],
+    "proposed_by": null,
+    "status": "confirmed",
+    "updated_at": "2026-09-02T09:49:06Z",
+    "value": "A user who needs an offline XLSX copy of a Feishu Bitable view they can legitimately access"
+  },
+  "environment_requirements": {
+    "confirmed_by": "workspace-owner",
+    "evidence": [
+      "user request plus isolated public-link export verification on 2026-09-02"
+    ],
+    "proposed_by": null,
+    "status": "confirmed",
+    "updated_at": "2026-09-02T09:49:06Z",
+    "value": [
+      "Node.js 20 or later",
+      "npm registry access",
+      "Playwright browser download access",
+      "Network access to the user-provided https://*.feishu.cn/base/ view"
+    ]
+  },
+  "failure_impact": {
+    "confirmed_by": "workspace-owner",
+    "evidence": [
+      "user request plus isolated public-link export verification on 2026-09-02"
+    ],
+    "proposed_by": null,
+    "status": "confirmed",
+    "updated_at": "2026-09-02T09:49:06Z",
+    "value": "Moderate: incomplete or malformed data could mislead offline review, so the exporter must fail before publishing output"
+  },
+  "history": [
+    {
+      "action": "confirm",
+      "actor": "workspace-owner",
+      "at": "2026-09-02T09:49:06Z",
+      "field": "objective"
+    },
+    {
+      "action": "confirm",
+      "actor": "workspace-owner",
+      "at": "2026-09-02T09:49:06Z",
+      "field": "decision_consumer"
+    },
+    {
+      "action": "confirm",
+      "actor": "workspace-owner",
+      "at": "2026-09-02T09:49:06Z",
+      "field": "decision_consequence"
+    },
+    {
+      "action": "confirm",
+      "actor": "workspace-owner",
+      "at": "2026-09-02T09:49:06Z",
+      "field": "success_measure"
+    },
+    {
+      "action": "confirm",
+      "actor": "workspace-owner",
+      "at": "2026-09-02T09:49:06Z",
+      "field": "failure_impact"
+    },
+    {
+      "action": "confirm",
+      "actor": "workspace-owner",
+      "at": "2026-09-02T09:49:06Z",
+      "field": "environment_requirements"
+    },
+    {
+      "action": "confirm",
+      "actor": "workspace-owner",
+      "at": "2026-09-02T09:49:06Z",
+      "field": "authority_owner"
+    },
+    {
+      "action": "confirm",
+      "actor": "workspace-owner",
+      "at": "2026-09-02T09:49:06Z",
+      "field": "semantic_contract_applies"
+    }
+  ],
+  "objective": {
+    "confirmed_by": "workspace-owner",
+    "evidence": [
+      "user request plus isolated public-link export verification on 2026-09-02"
+    ],
+    "proposed_by": null,
+    "status": "confirmed",
+    "updated_at": "2026-09-02T09:49:06Z",
+    "value": "Export every accessible record and visible field from one user-provided Feishu Bitable view to a valid XLSX workbook"
+  },
+  "problem": {
+    "confirmed_by": "workspace-owner",
+    "evidence": [
+      "user_statement"
+    ],
+    "proposed_by": null,
+    "status": "confirmed",
+    "updated_at": "2026-09-02T09:41:35Z",
+    "value": "Export a legitimately public Feishu Bitable view to XLSX from a clean installation"
+  },
+  "schema_version": 1,
+  "semantic": {
+    "ambiguity_behavior": {
+      "confirmed_by": null,
+      "evidence": [],
+      "proposed_by": null,
+      "status": "unknown",
+      "updated_at": null,
+      "value": null
+    },
+    "definitions": {
+      "confirmed_by": null,
+      "evidence": [],
+      "proposed_by": null,
+      "status": "unknown",
+      "updated_at": null,
+      "value": null
+    },
+    "freshness_policy": {
+      "confirmed_by": null,
+      "evidence": [],
+      "proposed_by": null,
+      "status": "unknown",
+      "updated_at": null,
+      "value": null
+    },
+    "grain_unit": {
+      "confirmed_by": null,
+      "evidence": [],
+      "proposed_by": null,
+      "status": "unknown",
+      "updated_at": null,
+      "value": null
+    },
+    "source_precedence": {
+      "confirmed_by": null,
+      "evidence": [],
+      "proposed_by": null,
+      "status": "unknown",
+      "updated_at": null,
+      "value": null
+    },
+    "time_semantics": {
+      "confirmed_by": null,
+      "evidence": [],
+      "proposed_by": null,
+      "status": "unknown",
+      "updated_at": null,
+      "value": null
+    }
+  },
+  "semantic_contract_applies": {
+    "confirmed_by": "workspace-owner",
+    "evidence": [
+      "user request plus isolated public-link export verification on 2026-09-02"
+    ],
+    "proposed_by": null,
+    "status": "confirmed",
+    "updated_at": "2026-09-02T09:49:06Z",
+    "value": false
+  },
+  "success_measure": {
+    "confirmed_by": "workspace-owner",
+    "evidence": [
+      "user request plus isolated public-link export verification on 2026-09-02"
+    ],
+    "proposed_by": null,
+    "status": "confirmed",
+    "updated_at": "2026-09-02T09:49:06Z",
+    "value": "A clean installation exports the supplied public view to a readable XLSX whose row count equals the completed source result set and whose headers match visible fields"
+  },
+  "updated_at": "2026-09-02T09:49:06Z"
+}
