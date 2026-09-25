@@ -1,27 +1,21 @@
-# Feishu Bitable Export Skill evaluation
-
-The live end-to-end case is intentionally supplied at verification time through a user-authorized public view URL; no source URL, table ID, record, or response fixture is embedded in this skill package.
+# Feishu Bitable Export evaluation
 
 ## Binary checks
 
-1. `npm ci` completes from `package-lock.json`.
-2. `npm run export -- --help` exits successfully.
-3. A successful live export creates exactly one XLSX output and prints row and column counts.
-4. `npm run check-workbook -- <output.xlsx>` reports one sheet, a frozen header, an autofilter, and zero Excel error values.
-5. An invalid URL, incomplete source response, count mismatch, or existing output without `--force` exits non-zero and does not publish a new workbook.
+1. `npm ci` installs the locked dependencies.
+2. `npm run export -- --help` exits successfully and documents both `/base/` and current-view `/wiki/` inputs.
+3. A direct Bitable view with verifiable records creates an XLSX whose workbook checker passes.
+4. A Wiki link with table/view parameters creates an XLSX only when a candidate Base returns successful same-origin metadata for that current view.
+5. A Wiki page without a displayed Bitable, a permission error, malformed data, ambiguous Base candidates, stalled pagination, or unverified completeness exits non-zero and publishes no XLSX.
+6. Readable image/media values are embedded or placed in the same-name media directory; failed media retains a visible note/link.
+7. Existing output is never overwritten unless `--force` is explicit.
 
-```json
-{
-  "skill": "feishu-bitable-export",
-  "criteria": [
-    {"id": "install-lockfile", "text": "npm ci installs locked dependencies", "type": "command", "cmd": "test -f package-lock.json"},
-    {"id": "entrypoint-help", "text": "The export entrypoint has a help command", "type": "command", "cmd": "node scripts/export-bitable.mjs --help >/dev/null"},
-    {"id": "workbook-checker", "text": "The XLSX checker has a help command", "type": "command", "cmd": "node scripts/check-workbook.mjs --help >/dev/null"}
-  ],
-  "golden": [
-    {"id": "public-view", "input": "golden/public-view/input.json", "expected": null, "expected_status": "pending-first-green", "split": "val"},
-    {"id": "authorized-view", "input": "golden/authorized-view/input.json", "expected": null, "expected_status": "pending-first-green", "split": "val"},
-    {"id": "invalid-url", "input": "golden/invalid-url/input.json", "expected": null, "expected_status": "pending-first-green", "split": "test"}
-  ]
-}
-```
+## Golden cases
+
+- `direct-bitable-public`: user-provided direct view URL at verification time.
+- `wiki-displayed-bitable`: user-provided current-view Wiki URL at verification time.
+- `wiki-without-bitable`: must stop clearly and publish no workbook.
+- `filtered-view-no-completion`: must fail closed.
+- `invalid-url`: must fail before browser/output publication.
+
+Live tests use user-authorized URLs at verification time. No source URL, table ID, record, cookie, browser state, media, or response fixture is stored in this package.

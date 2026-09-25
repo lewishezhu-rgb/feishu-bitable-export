@@ -1,55 +1,23 @@
 {
-  "question": "Can I obtain a complete offline Excel copy of this Feishu Bitable view?",
-  "trigger": [
-    "A user has a Feishu Bitable view URL and requests an XLSX export",
-    "A user needs an offline backup of data they can legitimately view"
-  ],
-  "decision": [
-    "Accept the generated XLSX as a complete offline copy",
-    "Stop and resolve access or completeness failures before relying on an export"
-  ],
-  "evidence": [
-    "User-provided complete Feishu Bitable view URL",
-    "Data returned to the user's authorized browser session",
-    "Visible view field metadata and record count where applicable"
-  ],
-  "success_measure": "A clean installation produces a readable XLSX whose visible columns and validated record count match the requested source view.",
-  "outcome": "One locally saved, validated XLSX workbook for the requested Bitable view.",
-  "intended_users": ["Users with legitimate Feishu Bitable view access"],
-  "input_types": ["HTTPS Feishu Bitable view URL"],
-  "output_artifacts": ["XLSX workbook", "Safe JSON completion summary"],
-  "use_cases": ["Public view export", "User-authorized view export after manual sign-in", "Offline Bitable backup"],
-  "examples": [
-    {"invocation": "/feishu-bitable-export 把这个飞书多维表格导出为 Excel", "description": "Export one Bitable view"}
-  ],
-  "permissions_systems": ["Network access to the user-provided *.feishu.cn view", "Write permission for the requested XLSX path"],
-  "typical_completion_time": "1-5 minutes, excluding any user sign-in",
-  "compatibility": {"declared": ["codex", "claude-code", "cursor"], "certified": []},
-  "environment": {
-    "documentation_sources": ["Bundled README and npm package metadata"],
-    "data_sources": ["The Bitable data returned to the page in the user's current isolated session"],
-    "required_capabilities": ["Node.js 20+", "npm", "Playwright Chromium", "Terminal access"],
-    "readiness_checks": ["URL contains base/table/view", "Browser can load the view", "Output path is writable"]
-  },
-  "risk": {"tier": "low", "permissions": ["Read only the user-requested Bitable view", "Write one requested local XLSX"], "mutation_boundary": "read-only", "approval_required": ["Explicit approval before overwriting an existing output"]},
-  "software_mutation": {"applies": false},
-  "data_interfaces": {
-    "applies": true,
-    "interface_types": ["api"],
-    "authoritative_sources": ["Data exposed to the authorized Feishu Bitable web view"],
-    "entities": ["Table metadata", "View metadata", "Record", "Field"],
-    "identifiers": ["Bitable base token", "Table ID", "View ID", "Record ID", "Field ID"],
-    "relationships": ["A view orders visible fields from a table; records contain values for table fields"],
-    "field_semantics": ["Visible field order comes from view metadata; select option IDs map to configured labels"],
-    "invariants": ["Unfiltered export record count must equal source metadata count; exported columns must be visible view fields"],
-    "freshness_and_pagination": ["Initial metadata may contain partial records; remaining records must be merged and validated before output"],
-    "nullability": ["Record cell values may be null; table metadata, target view, and visible field list are required"],
-    "readiness_checks": ["Endpoint responses parse successfully", "Source view metadata contains target fields", "Completion can be verified"]
-  },
-  "semantic_contract": {"applies": false},
-  "routing_tests": {
-    "should_trigger": ["导出飞书多维表格为 Excel", "备份这个 Feishu Bitable 视图", "下载公开飞书表格到 xlsx"],
-    "should_not_trigger": ["修改飞书表格中的数据", "下载表格附件", "整理普通 Excel 文件"]
-  },
-  "support_tier": "supported"
+  "question": "Can I obtain a complete offline Excel copy of the Bitable view displayed by this Feishu or Wiki link?",
+  "trigger": ["A user has a Feishu Bitable view URL", "A user has a Wiki URL with table and view parameters that displays a Bitable", "A user cannot copy a read-only Bitable but can view it"],
+  "decision": ["Accept the validated XLSX export", "Stop and resolve access, mapping, or completeness failures before relying on the export"],
+  "evidence": ["User-provided complete Feishu Bitable or current-view Wiki URL", "Data returned to the current authorized browser page", "View metadata and record count where applicable"],
+  "success_measure": "A clean installation produces a readable XLSX containing the current displayed Bitable view's visible fields and all records whose completeness can be proven.",
+  "outcome": "One locally saved validated XLSX workbook and optional same-name media directory.",
+  "intended_users": ["Users with legitimate Feishu Bitable read access"],
+  "input_types": ["HTTPS Feishu /base/ Bitable URL", "HTTPS Feishu /wiki/ URL with table and view parameters"],
+  "output_artifacts": ["XLSX workbook", "Optional media directory", "Safe JSON completion summary"],
+  "use_cases": ["Direct Bitable view export", "Wiki current-page displayed Bitable export", "Offline read-only backup"],
+  "examples": [{"invocation":"/feishu-bitable-export 把这个飞书多维表格导出为 Excel","description":"Export one Bitable view"}],
+  "permissions_systems": ["Read access through an isolated user-authorized Feishu browser session", "Write access for requested local XLSX path"],
+  "typical_completion_time": "1-10 minutes depending on record count and media",
+  "compatibility": {"declared":["codex","claude-code","cursor"],"certified":[]},
+  "environment": {"documentation_sources":["Bundled README and package metadata"],"data_sources":["Current authorized Feishu Bitable page"],"required_capabilities":["Node.js 20+","npm","Playwright Chromium","Terminal access"],"readiness_checks":["URL has supported /base/ or /wiki/ route","URL has table and view","Current page exposes the target Bitable","Output path writable"]},
+  "risk":{"tier":"low","permissions":["Read current requested Bitable view","Write local XLSX and optional media directory"],"mutation_boundary":"read-only","approval_required":["Explicit approval before overwrite"]},
+  "software_mutation":{"applies":false},
+  "data_interfaces":{"applies":true,"interface_types":["api"],"authoritative_sources":["Data exposed to the authorized Feishu Bitable web view"],"entities":["Bitable table metadata","Bitable view","Record","Field","Media item"],"identifiers":["Base token","Table ID","View ID","Record ID","Field ID"],"relationships":["A Wiki current page may expose one displayed Bitable whose Base is resolved by successful same-origin metadata response"],"field_semantics":["Visible field order comes from view metadata; select option IDs map to display labels; media links remain associated with their cells"],"invariants":["Direct and Wiki-resolved Bitable metadata must be accepted by code 0; unfiltered unique records equal metadata count; real filtered views require completion evidence"],"freshness_and_pagination":["Initial response can be partial; subsequent records merge by ID and progress is guarded"],"nullability":["Cell values and media links may be absent; table/view/field metadata is required"],"readiness_checks":["Same-origin clientvars succeeds","Target view exists","Record structure is readable","Completeness can be verified"]},
+  "semantic_contract":{"applies":false},
+  "routing_tests":{"should_trigger":["导出飞书多维表格","导出 Wiki 页面显示的多维表格","把只读多维表格导出为 xlsx"],"should_not_trigger":["导出普通飞书文档","导出普通 Sheets","修改多维表格数据","递归导出 Wiki 子页面"]},
+  "support_tier":"supported"
 }

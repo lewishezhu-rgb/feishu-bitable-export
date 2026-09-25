@@ -1,91 +1,56 @@
 ---
 name: feishu-bitable-export
 description: >-
-  Export a Feishu Bitable view that a user can legitimately access to XLSX. Use when
-  users ask to export, download, or back up a Feishu/Lark Bitable view to Excel,
-  especially a public share link. Runs an isolated Playwright browser, supports manual
-  sign-in when needed, verifies unfiltered record completeness, and writes a styled XLSX.
+  Export one user-authorized Feishu Bitable view to XLSX from a direct /base link or a
+  Wiki link that currently displays that same Bitable view. Use when users ask to export
+  a read-only Feishu Bitable or Wiki-embedded Bitable without copy permission. Runs an
+  isolated Playwright browser, keeps completeness checks, and can download field media.
 license: MIT
 activation: /feishu-bitable-export
 provenance:
   maintainer: workspace-owner
-  version: 1.0.0
-  created: 2026-09-02
+  version: 1.1.0
+  created: 2026-09-24
   source_references:
-    - User-authorized live public-view verification
+    - Original feishu-bitable-export main package
+    - User-confirmed Wiki current-view scope
 metadata:
   author: workspace-owner
-  version: 1.0.0
-  created: 2026-09-02
-  last_reviewed: 2026-09-02
-  dependencies:
-    - Node.js 20+
-    - npm registry access
-    - Playwright Chromium download access
+  version: 1.1.0
+  created: 2026-09-24
+  last_reviewed: 2026-09-24
+  review_interval_days: 90
+  dependencies: [Node.js 20+, npm, Playwright Chromium]
 compatibility: >-
-  Requires a host with terminal access, Node.js 20+, and a graphical session only when
-  manual Feishu sign-in is needed. Public anonymous views may run headlessly.
+  Requires terminal access and a graphical session only when the user must manually sign
+  in to Feishu. Public Bitable views may run headlessly.
 ---
 
 # /feishu-bitable-export
 
-Export one user-provided Feishu Bitable view to an `.xlsx` workbook without reusing a browser profile, cookie, or stored session.
+Export the one Bitable view currently displayed by a user-provided Feishu `/base/` or Wiki `/wiki/` link into XLSX.
 
-## Trigger
+## Use
 
-Use for requests such as:
+1. Accept one complete Feishu HTTPS link containing `table` and `view`.
+2. Run `npm ci`, then `npm run setup-browser` in a fresh environment.
+3. Run `npm run export -- "<URL>" --output "./export.xlsx"`.
+4. For a Wiki link, export only the Bitable view that the current link displays. Do not scan unrelated tables, follow ordinary Wiki links, or recurse into directories.
+5. If Feishu requests authentication, open a new visible isolated browser, let the user sign in there, confirm the displayed view, then continue at the terminal prompt. Never use normal browser profiles, cookies, storage state, extensions, or open tabs.
+6. By default, download readable image/attachment/media values. Images are embedded into the XLSX when possible; attachments, video, and audio are stored in a same-name `.media` folder and remain linked from their cells. Use `--include-media no` to disable this.
+7. Run `npm run check-workbook -- "./export.xlsx"` after export.
 
-- “把这个飞书多维表格导出成 Excel”
-- “下载这个公开 Bitable 的当前视图”
-- “将飞书表格备份为 xlsx”
+## Completeness and safety
 
-Do not use it for modifying Feishu data, exporting attachments/comments/history, batch-exporting multiple tables, or bypassing permissions.
-
-## Run
-
-From this skill directory:
-
-```bash
-npm ci
-npm run setup-browser
-npm run export -- "<完整飞书视图 URL>" --output "./export.xlsx"
-```
-
-The URL must use `https://*.feishu.cn/base/...` and include both `table` and `view` query parameters.
-
-For a view that is anonymously readable, use:
-
-```bash
-npm run export -- "<完整飞书视图 URL>" --headless --no-prompt --output "./export.xlsx"
-```
-
-For a view that redirects to sign-in, omit `--headless`. The runner opens a new in-memory browser. Ask the user to sign in and confirm the requested view there, then continue at the terminal prompt. Never connect to the user’s normal browser, profile, cookies, storage state, or open tabs.
-
-Use `--force` only after the user explicitly approves replacement of an existing `.xlsx` file.
-
-## Data and completeness rules
-
-1. Read table metadata and records only from the loaded page’s same-origin browser context.
-2. Export only visible fields, in the target view’s field order.
-3. Decode object and gzip-base64 payload forms; map select IDs to labels; preserve one HTTP(S) link per cell; escape formula-like text.
-4. For a view without an active filter, require final unique record count to equal source metadata count.
-5. For a filtered view, require an explicit server pagination-complete signal. If absent, fail closed and do not create a workbook.
-6. Fail on HTTP/business errors, unexpected payloads, repeated pagination offsets, no progress, unreadable field records, or count mismatches.
-7. Write the workbook to a temporary sibling file, then atomically publish the final `.xlsx` only after all checks pass.
-
-## Verify
-
-After a successful export:
-
-```bash
-npm run check-workbook -- "./export.xlsx"
-```
-
-Confirm the command reports one sheet, frozen header, autofilter, zero Excel error values, and the expected row/column counts when the exporter reported them.
+- Export only visible fields in the current Bitable view order.
+- Unfiltered views require unique exported record count to match source metadata. Real filtered views require a provider completion signal; otherwise fail closed.
+- Stop before writing XLSX on login/permission errors, malformed page data, repeated pagination, no progress, or count mismatch.
+- Preserve readable links and escape formula-like text before writing Excel cells.
+- On unreadable media, retain the cell text/link and add a visible cell note instead of silently dropping it.
+- Never overwrite an existing XLSX without explicit `--force` approval.
 
 ## Gotchas
 
-- A Feishu share URL may render a landing page without allowing anonymous API reads. Treat a sign-in redirect or API permission error as a requirement for user-mediated sign-in, not as a reason to reuse an existing profile.
-- The initial response may contain only a partial record map; the exporter must retrieve and merge the remaining response before writing a workbook.
-- Table-level record count is not a valid completeness proof for an actively filtered view.
-- This implementation relies on the data format made available to the authorized web page, not an official Feishu Open Platform export API. If that format changes, fail closed and update the exporter.
+- A Wiki URL is supported only when it directly displays the specified Bitable via its `table` and `view` parameters. A Wiki page containing no displayed Bitable stops with a clear error.
+- A view can render publicly but still reject its data request; use user-mediated sign-in in the temporary browser. Do not reuse a personal browser session.
+- The skill uses only the data exposed to the current authorized web page; it does not bypass permissions or persist raw responses, credentials, cookies, screenshots, or source records.

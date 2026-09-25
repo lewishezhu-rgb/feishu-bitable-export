@@ -9,7 +9,7 @@
     {
       "id": "claude_plugin_plugin_json",
       "path": ".claude-plugin/plugin.json",
-      "sha256": "9f625854d661efc5d3a9094179a0e2925e616fe7668eaa8bc572448738fa2cbb",
+      "sha256": "cd12ecccf3fb976d5dc44ab22873b833a29ab379e7d482c9724c1978ed7b493e",
       "type": "package_file"
     },
     {
@@ -21,7 +21,7 @@
     {
       "id": "agents_document",
       "path": "AGENTS.md",
-      "sha256": "84ff5db55220fe2d761b81b201070582097b516c469f32ef47660c79275b1ebb",
+      "sha256": "e073c8c5c4463ac90469f2b904c8cc990083160bb5be1acb6f1667229e2a3a3c",
       "type": "companion_instruction"
     },
     {
@@ -33,31 +33,31 @@
     {
       "id": "readme_md",
       "path": "README.md",
-      "sha256": "2cab97c402005109907e1d8f90ec5557889f6af327b6a308c19a713ec12d1ac8",
+      "sha256": "4f404494ab67153fc2ae8289f7e4957db7a758fda63d459afc73651017007d94",
       "type": "package_file"
     },
     {
       "id": "skill_document",
       "path": "SKILL.md",
-      "sha256": "dad85d406ad406b416f47a3c268eefca755cfd858297e6be6678a495713627ac",
+      "sha256": "40e63b294bc76e81ba3c12122d0976224e3a56d297c57344828bed3bf93e0c74",
       "type": "instruction"
     },
     {
       "id": "verification_md",
       "path": "VERIFICATION.md",
-      "sha256": "8da9e364fe49ba49bd25f44e6f469e35618a22689aa1a659f38be179ae776f4b",
+      "sha256": "7d48c2d08c369a3c88e270d479206bfb2052180f91af78c8966ceb2ead2a3113",
       "type": "package_file"
     },
     {
       "id": "discovery_json",
       "path": "discovery.json",
-      "sha256": "39225649c373454739eda85145d8f706fb9deceb9ac98d4346fd76cedf5f75a2",
+      "sha256": "8032cf9739573d3a37eec724bdd0948d74d28f948e6891b2f8968bc4ddd5478e",
       "type": "package_file"
     },
     {
       "id": "evals_feishu_bitable_export_eval_md",
       "path": "evals/feishu-bitable-export.eval.md",
-      "sha256": "82589fad85407ec36e4c982500ce78b4602c17191ac0f3d559f81ce740a25446",
+      "sha256": "5d0aa06e25fdbea1100400606ecaa8cc60fb89b5621803d6909031d0e274c3af",
       "type": "eval_spec"
     },
     {
@@ -99,13 +99,13 @@
     {
       "id": "package_lock_json",
       "path": "package-lock.json",
-      "sha256": "2248dbd19eaa082c04c19ce47ecaf9bae175e9337f8d7fc91a791f26302213f6",
+      "sha256": "9deb6718bc48acad52dd1ec236a8f44d5b043487c71452cf2d2c7216b8d7d620",
       "type": "package_file"
     },
     {
       "id": "package_json",
       "path": "package.json",
-      "sha256": "076bbcf322e06f9705e3492a74a1afee65931ab62f695e7a0d5f1ba820bbe92c",
+      "sha256": "f4dbb9bcffc37657431c51618d3f23cd1c4056add14239f85fa1911c7a5bb3ee",
       "type": "package_file"
     },
     {
@@ -117,13 +117,13 @@
     {
       "id": "scripts_export_bitable_mjs",
       "path": "scripts/export-bitable.mjs",
-      "sha256": "c575712896aaae2640c86160fb0d744c34a35f83305dd890250ba768989052a2",
+      "sha256": "74861032bb1a82ba5f947b02e31630f785e6c6cd754465dd8c9597a16021b8e6",
       "type": "script"
     },
     {
       "id": "scripts_run_evals_py",
       "path": "scripts/run_evals.py",
-      "sha256": "4585fbea4431b7879a96e3ebedd25c888fd5886d6319d6cdec1783125461b97f",
+      "sha256": "7b5c45a40035a7330620c65674f2b4b9ee88d2c5ea77e0559a70466af2a8b06f",
       "type": "script"
     }
   ],

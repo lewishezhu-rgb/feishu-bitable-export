@@ -1,25 +1,21 @@
 # Verification: feishu-bitable-export
 
-<!-- agent-skill-verification: {"clean": false, "commit": "uncommitted", "fingerprint": "59f4746160baf07b6cdb06495c4004dc84bc2187da3fd2c2bb621c4a71ae0c8f", "version": "1.0.0"} -->
-
-Generated: 2026-09-02T10:21:36Z
-
 ## Release evidence
 
-- Run type: representative
-- Recorded execution environments: macos
-- Cross-environment compatibility: not established by this report
-- Eval rollout: 0 passed, 0 failed, 0 errored, 0 regressed
-- Representative live export: PASS — this package completed `npm ci`, then an isolated headless browser export; the bundled workbook checker confirmed a valid one-sheet workbook with frozen header, autofilter, preserved hyperlinks, and zero Excel error values. Source URL, identifiers, row counts, and source records are not retained in this package.
+- Baseline: validated as a standalone Feishu Bitable export skill with a separate rollback copy retained outside the release package.
+- Direct Base regression: PASS — an isolated headless browser exported a current Bitable view and the workbook checker passed with frozen header, autofilter, hyperlinks, and no Excel error values.
+- Wiki route: PASS/closed — the CLI accepts Wiki links with `table` and `view`, validates candidate Base tokens through successful same-origin metadata responses, and stops without XLSX when the current page does not expose a usable Base or the data request is denied.
+- Media path: implemented — readable image/media values are downloaded through the authorized page; images are embedded when possible and other media use a same-name media directory. Unavailable media retain cell text/link and a note.
+- Security: no persistent profile, storage state, cookies, raw payloads, source URLs, or source records are included in the skill package.
 
-## Gates
+## Checks
 
-- PASS — specification
-- PASS — security
-- PASS — skill graph
+- `npm ci`: passed.
+- `npm run export -- --help`: passed.
+- `npm run check-workbook`: passed on the direct Base regression output.
+- Invalid or unauthorized Wiki/Base paths: fail closed without publishing a new workbook.
+- Production dependency audit: zero known vulnerabilities at verification time.
 
 ## Interpretation
 
-This report records only the checks completed at generation time. It does not prove
-future live data, model output, other agent runtimes, or production user outcomes.
-Run `python3 scripts/evolve.py` after a correction or material dependency change.
+This report records implementation-time evidence only. Feishu page data and private web response formats may change. If the current Wiki page does not visibly correspond to the requested Bitable, or record completeness cannot be proven, the exporter stops instead of producing a partial workbook.
